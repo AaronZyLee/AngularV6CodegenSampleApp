@@ -12,20 +12,21 @@ import { APIService, ListTodosQuery, Todo } from '../API.service';
   imports: [ReactiveFormsModule],
   selector: 'app-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.css']
+  styleUrls: ['./todos.component.css'],
+  providers: [ APIService ]
 })
 export class TodosComponent implements OnInit, OnDestroy {
   public createForm: FormGroup;
   public updateForm: FormGroup;
   public deleteForm: FormGroup;
-  public apiService: APIService;
+  public getForm: FormGroup;
 
   /* declare todos variable */
   public todos?: ListTodosQuery;
 
   private subscriptions: any[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private apiService: APIService) {
     this.createForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required]
@@ -38,7 +39,9 @@ export class TodosComponent implements OnInit, OnDestroy {
     this.deleteForm = this.fb.group({
       id: ['', Validators.required],
     })
-    this.apiService = new APIService();
+    this.getForm = this.fb.group({
+      id: ['', Validators.required],
+    })
   }
 
   async ngOnInit() {
@@ -113,6 +116,15 @@ export class TodosComponent implements OnInit, OnDestroy {
       console.log('item deleted!', response);
     } catch (e) {
       console.log('error deleting todo...', e);
+    }
+  }
+
+  public async onGet(todo: Todo) {
+    try {
+      const response = await this.apiService.GetTodo(todo.id);
+      console.log('item got!', response);
+    } catch (e) {
+      console.log('error getting todo...', e);
     }
   }
 }

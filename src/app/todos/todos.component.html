@@ -52,6 +52,20 @@
     <button type="submit">Submit</button>
   </form>
 </div>
+<div class="form-body">
+  <h3>Get Todo</h3>
+  <form
+    autocomplete="off"
+    [formGroup]="getForm"
+    (ngSubmit)="onGet(getForm.value)"
+  >
+    <div>
+      <label>Id: </label>
+      <input type="text" formControlName="id" autocomplete="off" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
 <div>
   <h3>All Todos</h3>
   <table>

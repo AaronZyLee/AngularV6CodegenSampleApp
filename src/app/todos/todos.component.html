@@ -1,0 +1,77 @@
+<div class="form-body">
+  <h3>Create Todo</h3>
+  <form
+    autocomplete="off"
+    [formGroup]="createForm"
+    (ngSubmit)="onCreate(createForm.value)"
+  >
+    <div>
+      <label>Name: </label>
+      <input type="text" formControlName="name" autocomplete="off" />
+    </div>
+    <div>
+      <label>Description: </label>
+      <input type="text" formControlName="description" autocomplete="off" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+<div class="form-body">
+  <h3>Update Todo</h3>
+  <form
+    autocomplete="off"
+    [formGroup]="updateForm"
+    (ngSubmit)="onUpdate(updateForm.value)"
+  >
+    <div>
+      <label>Id: </label>
+      <input type="text" formControlName="id" autocomplete="off" />
+    </div>
+    <div>
+      <label>Name: </label>
+      <input type="text" formControlName="name" autocomplete="off" />
+    </div>
+    <div>
+      <label>Description: </label>
+      <input type="text" formControlName="description" autocomplete="off" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+<div class="form-body">
+  <h3>Delete Todo</h3>
+  <form
+    autocomplete="off"
+    [formGroup]="deleteForm"
+    (ngSubmit)="onDelete(deleteForm.value)"
+  >
+    <div>
+      <label>Id: </label>
+      <input type="text" formControlName="id" autocomplete="off" />
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+<div>
+  <h3>All Todos</h3>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (todo of todos?.items; track todo?.id) {
+        <tr>
+          <th scope="row">{{ todo?.id }}</th>
+          <td>{{ todo?.name }}</td>
+          <td>{{ todo?.description }}</td>
+        </tr>
+        } @empty {
+        <div>There are no items.</div>
+        }
+    </tbody>
+  </table>
+</div>

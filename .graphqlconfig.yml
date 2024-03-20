@@ -1,0 +1,19 @@
+projects:
+  amplifyapp:
+    schemaPath: amplify/backend/api/amplifyapp/build/schema.graphql
+    includes:
+      - graphql/**/*.graphql
+    excludes:
+      - ./amplify/**
+      - src/app/API.service.ts
+    extensions:
+      amplify:
+        codeGenTarget: angularv6
+        generatedFileName: src/app/API.service.ts
+        docsFilePath: graphql
+        region: us-west-2
+        apiId: null
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

@@ -8,11 +8,12 @@ projects:
       - src/app/API.service.ts
     extensions:
       amplify:
-        codeGenTarget: angularv6
+        codeGenTarget: angular
         generatedFileName: src/app/API.service.ts
         docsFilePath: src/graphql
         region: us-west-2
         apiId: null
+        amplifyJsLibraryVersion: 6
         maxDepth: 2
 extensions:
   amplify:
